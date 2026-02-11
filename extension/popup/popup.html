@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>NetDout</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 12px; width: 320px; }
+      input, button { width: 100%; margin-top: 8px; }
+      #status { margin-top: 8px; font-size: 12px; white-space: pre-wrap; }
+    </style>
+  </head>
+  <body>
+    <h3>NetDout Queue</h3>
+    <input id="url" placeholder="https://example.com/file.zip" />
+    <input id="output" placeholder="./file.zip" />
+    <button id="queueBtn">Queue Download</button>
+    <input id="jobId" placeholder="Download ID for status" />
+    <button id="statusBtn">Get Status</button>
+    <div id="status"></div>
+    <script src="popup.js"></script>
+  </body>
+</html>
