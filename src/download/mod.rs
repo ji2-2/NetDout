@@ -53,10 +53,11 @@ impl DownloadEngine {
         self.state.write().await.insert(id.clone(), info);
 
         let this = self.clone();
+        let job_id = id.clone();
         tokio::spawn(async move {
             if let Err(err) = this
                 .run_download(
-                    id.clone(),
+                    job_id.clone(),
                     DownloadRequest {
                         url,
                         output: output.into(),
@@ -65,7 +66,7 @@ impl DownloadEngine {
                 .await
             {
                 let mut guard = this.state.write().await;
-                if let Some(entry) = guard.get_mut(&id) {
+                if let Some(entry) = guard.get_mut(&job_id) {
                     entry.status = DownloadStatus::Failed(err.to_string());
                 }
             }
