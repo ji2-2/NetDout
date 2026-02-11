@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "NetDout Connector",
+  "version": "0.1.0",
+  "description": "Intercept browser downloads and forward them to NetDout daemon.",
+  "permissions": ["downloads", "storage", "activeTab", "scripting"],
+  "host_permissions": ["http://127.0.0.1:8472/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "NetDout"
+  },
+  "options_page": "options/options.html",
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
